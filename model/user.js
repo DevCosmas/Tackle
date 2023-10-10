@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const bcrypt = require('bcrypt')
 const validator = require('validator')
+// const { default: isBoolean } = require('validator/lib/isBoolean')
 const userSchema = new Schema({
     fullname: {
         type: String,
@@ -25,6 +26,10 @@ const userSchema = new Schema({
         type: String,
         trim: true,
         default: 'TackleDefaultPics.png'
+    },
+    active: {
+        type: Boolean,
+        default: true
     },
     password: {
         type: String,

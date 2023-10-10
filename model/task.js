@@ -20,6 +20,20 @@ const taskSchema = new Schema({
         type: Date,
         default: Date.now
     }
+},
+    {
+        toJSON: { virtuals: true },
+        toObject: { virtuals: true }
+    }
+
+)
+
+taskSchema.pre(/^find/, function (next) {
+    this.populate({
+        path: 'user',
+        select: 'fullname -_id'
+    })
+    next()
 })
 
 const taskModel = mongoose.model('Task', taskSchema)

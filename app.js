@@ -1,4 +1,5 @@
 const express = require('express')
+const cookieParser = require("cookie-parser")
 const { mongoDbConnection } = require('./config')
 const { taskRouter } = require('./routes/taskRoute')
 const { userRouter } = require('./routes/userRoutes')
@@ -11,8 +12,11 @@ const app = express()
 mongoDbConnection()
 
 // middleWare
+app.use(cookieParser())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+
+
 
 // routes
 app.use('/api/v1', userRouter)
