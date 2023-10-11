@@ -1,5 +1,6 @@
 const express = require('express')
 const cookieParser = require("cookie-parser")
+const path = require('path')
 const helmet = require('helmet')
 const morgan = require('morgan')
 const { mongoDbConnection } = require('./config')
@@ -13,9 +14,16 @@ const PORT = process.env.PORT
 const app = express()
 mongoDbConnection()
 
+// Template engine
+app.set('view engine', 'pug')
+app.set('views', path.join(__dirname, 'views'))
+
+// Static files
+app.use(express.static(path.join(__dirname, 'public')))
+
 // middleWare
-// app.use(helmet())
-// app.use(morgan('combined'))
+app.use(helmet())
+app.use(morgan('combined'))
 app.use(cookieParser())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -25,6 +33,10 @@ app.use(express.urlencoded({ extended: true }))
 // routes
 app.use('/api/v1', userRouter)
 app.use('/api/v1', taskRouter)
+
+app.get('/', (req, res) => {
+    res.status(200).render('base')
+})
 
 // app.all('*')
 app.listen(PORT, () => {
