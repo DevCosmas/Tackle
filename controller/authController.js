@@ -3,9 +3,9 @@ const { userModel } = require('./../model/user')
 
 const isAuthenticated = async (req, res, next) => {
     try {
-        
 
-        var token = req.cookies.token
+
+        var token = req.cookies.jwt
         const decodedToken = await jwt.verify(token, process.env.JWT_SECRET_KEY);
         const date = new Date
         const time = parseInt(date.getTime() / 1000)

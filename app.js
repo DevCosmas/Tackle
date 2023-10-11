@@ -1,5 +1,7 @@
 const express = require('express')
 const cookieParser = require("cookie-parser")
+const helmet = require('helmet')
+const morgan = require('morgan')
 const { mongoDbConnection } = require('./config')
 const { taskRouter } = require('./routes/taskRoute')
 const { userRouter } = require('./routes/userRoutes')
@@ -12,6 +14,8 @@ const app = express()
 mongoDbConnection()
 
 // middleWare
+// app.use(helmet())
+// app.use(morgan('combined'))
 app.use(cookieParser())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))

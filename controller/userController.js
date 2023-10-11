@@ -38,7 +38,7 @@ async function Login(req, res) {
 
         res.cookie('jwt', token, { httpOnly: true });
         // console.log(req.cookies)
-        res.status(201).json({ result: "SUCCESS", Message: 'You are logged in now', token, user: isValidUser })
+        res.status(200).json({ result: "SUCCESS", Message: 'You are logged in now', token, user: isValidUser })
     } catch (err) {
         res.status(500).json({ message: "internal server error /login", error: err.message })
     }
@@ -58,7 +58,7 @@ async function updateProfile(req, res) {
 async function deleteAcct(req, res) {
     try {
 
-        const deleteUser = await userModel.findByIdAndDelete(req.user._id)
+        const deleteUser = await userModel.findByIdAndUpdate(req.user._id)
         if (deleteUser) res.status(203).json({ result: "Success", message: 'Account deletion successful' })
     } catch (err) {
         res.status(500).json({ message: "internal server error", error: err.message })
