@@ -2,7 +2,7 @@ const { taskModel } = require("../model/task")
 
 async function getAll(req, res) {
     try {
-        if (req.user === true) {
+        if (req.user.active === true) {
             const query = req.query
             const task = await taskModel.find(query).select('name createdAt').sort({ name: -1 })
             if (!task) return res.status(404).json({ result: "FAIL" })
