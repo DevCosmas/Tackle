@@ -6,6 +6,7 @@ const morgan = require('morgan')
 const { mongoDbConnection } = require('./config')
 const { taskRouter } = require('./routes/taskRoute')
 const { userRouter } = require('./routes/userRoutes')
+const viewRoute=require('./routes/viewRoute')
 
 require('dotenv').config()
 const PORT = process.env.PORT
@@ -33,10 +34,9 @@ app.use(express.urlencoded({ extended: true }))
 // routes
 app.use('/api/v1', userRouter)
 app.use('/api/v1', taskRouter)
+app.use('/', viewRoute)
 
-app.get('/', (req, res) => {
-    res.status(200).render('base')
-})
+
 
 // app.all('*')
 app.listen(PORT, () => {
