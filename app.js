@@ -15,19 +15,33 @@ const PORT = process.env.PORT
 const app = express()
 mongoDbConnection()
 
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
 // Template engine
-app.set('view engine', 'pug')
+app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'))
 
 // Static files
 app.use(express.static(path.join(__dirname, 'public')))
 
+// csp config
+const cspConfig = {
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'"],
+      styleSrc: ["'self'"],
+      connectSrc: ["'self'", 'http://localhost:3000']
+    },
+  };
 // middleWare
-app.use(helmet())
+app.use(helmet({
+    contentSecurityPolicy: cspConfig,
+  }));
 app.use(morgan('combined'))
 app.use(cookieParser())
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+// app.use(express.json())
+// app.use(express.urlencoded({ extended: true }))
 
 
 
@@ -36,9 +50,10 @@ app.use('/api/v1', userRouter)
 app.use('/api/v1', taskRouter)
 app.use('/', viewRoute)
 
+app.all('*', (req, res) => {
+    res.status(404).send('Page not found');
+  });
 
-
-// app.all('*')
 app.listen(PORT, () => {
     console.log('Server is up and paying attention')
 })

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/index.css" />
+  <link rel="shortcut icon" href="img/favicon.png" type="image/png" />
+  <title>Tackle</title>
+</head>
+
+<body>
+  <header>
+    <nav class="nav--bar">
+      <li><a class="nav--link" href="#">all task</a></li>
+      <li>
+        <form class="sorting" action="">
+          <select class="sort" name="sort">
+            <option class="sort-opt" value="sort-by"><a class="sort-opt" href="#"> sort by </a></option>
+            <option class="sort-opt" value="sort-by"><a class="sort-opt" href="#"> pending </a></option>
+            <option class="sort-opt" value="sort-by"><a class="sort-opt" href="#"> completed </a></option>
+            <option class="sort-opt" value="sort-by"><a class="sort-opt" href="#"> deleted </a></option>
+          </select>
+        </form>
+      </li>
+      <li> <a class="nav--link stats" id="stats" href="#">stats</a></li>
+      <li class="nav--logout"> <a class="nav--link" href="#">logout </a></li>
+    </nav>
+  </header>
+  <script src="js/stats.js" type="module"></script>
+</body>
+
+</html>

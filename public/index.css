@@ -93,6 +93,7 @@ header {
 
 .nav--bar {
   display: flex;
+  width: 100%;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
@@ -127,8 +128,8 @@ li {
 }
 
 .user-profile {
-  width: 50%;
-  height: 50%;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   transform: translate(30%, 10%);
 }
@@ -239,7 +240,7 @@ main {
   border-radius: 5px 5px;
   border:none;
   border-bottom: 2px solid rgb(90, 87, 87);
-  text-transform: capitalize;
+  text-transform:lowercase;
 }
 
 .login-submit{
@@ -326,3 +327,16 @@ text-decoration: none;
 .stats{
   padding-right: 3rem;
 }
+
+.displayName{
+ display: flex;
+ align-items: center;
+ justify-content: right;
+ margin-left: -3rem;
+ color:#fff;
+ text-transform: capitalize;
+}
+.nav--logout{
+  margin-left: 5rem;}
+
+ 

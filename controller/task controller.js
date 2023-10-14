@@ -1,4 +1,6 @@
 const { taskModel } = require("../model/task")
+const mongoose=require('mongoose')
+const ObjectId = mongoose.Types.ObjectId;
 
 async function getAll(req, res) {
     try {
@@ -13,27 +15,30 @@ async function getAll(req, res) {
     }
 
 }
+
 async function createNewTask(req, res) {
     try {
-        const body = req.body
-        body.user = req.user._id
-
+        const body = req.body;
+        body.user = req.user._id;
         if (req.user.active === true) {
-            const newTask = await taskModel.create(body)
-            res.status(201).json({ result: "SUCCESS", message: 'A new task has been added', newTask })
+            const newTask = await taskModel.create(body);
+           
+            res.status(201).json({ result: "SUCCESS", message: 'A new task has been added', newTask });
+        } else {
+            res.status(404).json({ result: 'FAIL', message: 'User does not exist kindly sign up' });
         }
-        else { res.status(404).json({ result: 'FAIL', message: 'User does not exist kindly signUp' }) }
-
     } catch (err) {
-        res.status(500).json({ message: "internal server error", error: err.message })
+        res.status(500).json({ message: "internal server error", error: err.message, stack: err.stack });
     }
 }
+
 async function updateTask(req, res) {
     try {
-        const taskToBeUpdated = req.body
         if (req.user.active === true) {
-            const updatedTask = await taskModel.findByIdAndUpdate(req.params.id, taskToBeUpdated, { new: true, runValidators: true })
-            res.status(201).json({ result: "SUCCESS", message: 'task has been updated', updatedTask })
+            const task= await taskModel.findById(req.params.id)
+            task.status='completed',
+            await task.save();
+            res.status(201).json({ result: "SUCCESS", message: 'task has been updated', task })
         }
         else {
             res.status(404).json({ result: 'FAIL', message: 'User does not exist kindly signUp' })
@@ -47,10 +52,12 @@ async function updateTask(req, res) {
 async function deleteTask(req, res) {
     try {
         if (req.user.active === true) {
-            const { id } = req.params
-            const deleteTask = await taskModel.findByIdAndDelete(id)
-            deleteTask.status = 'deleted'
-            res.status(203).json({ result: "SUCCESS", message: 'A task has been deleted' })
+            const task= await taskModel.findById(req.params.id)
+            task.status='deleted'
+            await task.save();
+            res.status(200).json({ result: "SUCCESS", message: 'A task has been deleted' , task})
+        }else {
+            res.status(404).json({ result: 'FAIL', message: 'User does not exist kindly signUp' })
         }
 
     } catch (err) {
@@ -60,40 +67,33 @@ async function deleteTask(req, res) {
 }
 
 async function getTaskStats(req, res) {
-   try{
-    const pipeline = [
-        {
-            $match: {
-
-                $or: [
-                    { status: "pending" },
-                    { status: "completed" },
-                    { status: "deleted" }
-                ]
-            }
-        },
-        {
-            $group: {
-                _id: "$status",
-                count: { $sum: 1 }
-            }
-        },  {
-            $project: {
-              _id: 0,
-              status: "$_id",
-              count: 1,
+    try {
+        const userId = req.user._id
+        const pipeline = [
+            { $match: { user: new ObjectId(userId) } },
+            {
+                $group: {
+                    _id: '$status',
+                    count: { $sum: 1 },
+                },
             },
-          }
+            {
+                $project: {
+                    _id: 0,
+                    status: "$_id",
+                    count: 1,
+                },
+            }
 
-    ]
-    if (req.user.active === true) {
-        const taskStats = await taskModel.aggregate(pipeline)
-        res.status(200).json({result:'SUCESS', taskStats})
+        ]
+        if (req.user.active === true) {
+            const taskStats = await taskModel.aggregate(pipeline)
+            res.status(200).json({ result: 'SUCESS', taskStats })
 
-}
-   } catch(err){
-    res.status(500).json({ message: "internal server error", error: err.message })
-   }
+        }
+    } catch (err) {
+        res.status(500).json({ message: "internal server error", error: err.message })
+    }
 }
 
 module.exports = { getAll, deleteTask, updateTask, createNewTask, getTaskStats }

@@ -23,8 +23,9 @@ async function Login(req, res) {
         const loginDetails = req.body
         // confirm if user exist
         const isValidUser = await userModel.findOne({ email: loginDetails.email })
-        if (!isValidUser){
-            return res.status(404).json({ messag: 'this user is not found. kindly sign up' })}
+        if (!isValidUser) {
+            return res.status(404).json({ result: "FAIL", message: 'this user is not found. kindly sign up' })
+        }
         // compare user password
         const isValidPassowrd = await isValidUser.isValidPassword(loginDetails.password, isValidUser.password)
         // console.log(isValidPassowrd)
