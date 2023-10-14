@@ -1,33 +1,63 @@
-<!DOCTYPE html >
+<!DOCTYPE html>
 <html>
-  <head> 
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="/index.css"/>
-    <link rel="shortcut icon" href="img/favicon.png" type="image/png"/>
-    <title>Tackle</title>
-  </head>
-  <body> 
-    <header> 
-      <nav class="nav--bar"> 
-        <li><a class="nav--link" href="#">all task</a></li>
-        <li> 
-          <form class="sorting" action="">
-            <select class="sort" name="sort"> 
-              <option class="sort-opt" value="sort-by"><a class="sort-opt" href="#">  sort by  </a></option>
-              <option class="sort-opt" value="sort-by"><a class="sort-opt" href="#">  pending </a></option>
-              <option class="sort-opt" value="sort-by"><a class="sort-opt" href="#">  completed </a></option>
-              <option class="sort-opt" value="sort-by"><a class="sort-opt" href="#">  deleted             </a></option>
-            </select>
-          </form>
-        </li>
-        <li> <a class="nav--link stats" href="#">stats</a></li>
-        <li class="nav--logout"> <a class="nav--link" href="#">logout </a></li>
-      </nav>
-    </header>
-    <div class="search-container"> 
-      <div class="search-child"> <span class="status pending">pending </span><span class="search-details content">learn java </span><span class="content date">april 21 2023</span></div>
-    </div>
-    <script src="js/stats.js" type="module"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/index.css" />
+  <link rel="shortcut icon" href="img/favicon.png" type="image/png" />
+  <title>Tackle</title>
+</head>
+
+<body>
+  <header>
+    <nav class="nav--bar">
+      <li><a class="nav--link" href="searchQuery">all task</a></li>
+      <li>
+        <form class="sorting" action="">
+          <select class="sort" name="sort">
+            <option class="sort-opt" value="sort-by"><a class="sort-opt" href="#"> sort by </a></option>
+            <option class="sort-opt" value="sort-by"><a class="sort-opt" href="#"> pending </a></option>
+            <option class="sort-opt" value="sort-by"><a class="sort-opt" href="#"> completed </a></option>
+            <option class="sort-opt" value="sort-by"><a class="sort-opt" href="#"> deleted </a></option>
+          </select>
+        </form>
+      </li>
+      <li>  <a class="nav--link stats" id="stats" href="/stats">stats</a></li>
+      <li class="nav--logout"> <a class="nav--link" href="#">logout</a></li>
+    </nav>
+  </header>
+
+
+  <div class="task-list">
+    <!-- Next Button -->
+    <% if (userTasks.length===pageSize) { %>
+      <a href="/searchQuery?page=<%= page + 1 %>" class="pagination-button">Next</a>
+      <% } %>
+
+        <!-- Previous Button -->
+        <% if (page> 1) { %>
+          <a href="/searchQuery?page=<%= page - 1 %>" class="pagination-button">Previous</a>
+          <% } %>
+
+
+            <% userTasks.forEach(task=> { %>
+              <div class="search-container">
+                <div class="search-child">
+                  <span class="status <%= task.status %>">
+                    <%= task.status %>
+                  </span>
+                  <span class="search-details content">
+                    <%= task.name %>
+                  </span>
+                  <span class="content date">
+                    <%= task.createdAt.toLocaleDateString('en-US', { year: 'numeric' , month: 'long' , day: 'numeric' })
+                      %>
+                  </span>
+                </div>
+              </div>
+              <% }); %>
+  </div>
+</body>
+
 </html>

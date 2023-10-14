@@ -5,10 +5,10 @@ const ObjectId = mongoose.Types.ObjectId;
 async function getAll(req, res) {
     try {
         if (req.user.active === true) {
-            const query = req.query
-            const task = await taskModel.find(query).select('name createdAt').sort({ name: -1 })
-            if (!task) return res.status(404).json({ result: "FAIL" })
-            res.status(200).json({ result: "SUCCES", size: task.length, task })
+            const userId = req.user.id
+            const userTasks = await taskModel.find({ user: userId });
+            if (!userTasks) return res.status(404).json({ result: "FAIL" })
+            res.status(200).json({ result: "SUCCES", size: userTasks.length, userTasks })
         }
     } catch (err) {
         res.status(500).json({ message: "internal server error", error: err.message })

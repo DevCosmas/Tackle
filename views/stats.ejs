@@ -10,7 +10,7 @@
   <body> 
     <header> 
       <nav class="nav--bar"> 
-        <li><a class="nav--link" href="#">all task</a></li>
+        <li><a class="nav--link" href="searchQuery">all task</a></li>
         <li> 
           <form class="sorting" action="">
             <select class="sort" name="sort"> 
@@ -21,12 +21,15 @@
             </select>
           </form>
         </li>
-        <li> <button class="nav--link stats" id="stats">stats</button></li>
+        <li>  <a class="nav--link stats" id="stats" href="/stats">stats</a></li>
         <li class="nav--logout"> <a class="nav--link" href="#">logout </a></li>
       </nav>
     </header>
     <div class="search-container stats-container"> 
-      <div class="search-container stats-child"><span class="status pending">pending </span><span class="content date stats">2</span></div>
+      
+      <% taskStats.forEach(task=> { %>
+             <div class="search-container stats-child"><span class="status <%= task.status %>"><%= task.status %></span><span class="content date stats"><%= task.count %></span></div> 
+              <% }); %>
     </div>
     <script src="js/stats.js" type="module"></script>
   </body>

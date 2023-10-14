@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const authController= require('./../controller/authController')
+const viewController=require('./../controller/view_controller')
 
 
 
@@ -20,10 +21,6 @@ router.use(authController.isLoggedIn)
 router.get('/overview', (req, res) => {
     res.status(200).render('overview')
 })
-router.get('/stats', (req, res) => {
-    res.status(200).render('stats')
-})
-router.get('/search_query', (req, res) => {
-    res.status(200).render('searchQuery')
-})
+router.get('/stats', viewController.getUserTaskStat)
+router.get('/searchQuery', viewController.userTask)
 module.exports = router
