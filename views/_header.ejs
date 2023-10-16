@@ -5,18 +5,26 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="/index.css" />
+  <link rel="stylesheet" href="/mediaQ.css" />
+
   <link rel="shortcut icon" href="img/favicon.png" type="image/png" />
   <title>Tackle</title>
 </head>
 
 <body>
   <header>
+    <span class="dots--container">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="dots">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
+      </svg>
+      
+    </span>
     <% if (user) { %>
       <nav class="nav--bar">
         <li><a class="nav--link" href="/overview">task</a></li>
         <li> <a class="nav--link stats" id="stats" href="/stats">stats</a></li>
         <div class="profile--container">
-          <li > Welcome <%= user.fullname.split(' ')[0] %></li>
+          <li class="user-name"> Welcome <%= user.fullname.split(' ')[0] %></li>
            <img src="/img/<%= user.photo %>" alt="<%= user.fullname %> profile pic" class="user-profile">
 
         </div>
