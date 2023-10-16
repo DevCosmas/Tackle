@@ -2,7 +2,7 @@ const main = document.querySelector('.main-overview');
 main.addEventListener('click', async (event) => {
     if (event.target.classList.contains('delete--icon_icon')) {
         let taskContainer = event.target.parentElement;
-        while (taskContainer && !taskContainer.classList.contains('task--container')) {
+        while (taskContainer && !taskContainer.classList.contains('task--wrapper')) {
             taskContainer = taskContainer.parentElement;
         }
         if (taskContainer) {
@@ -10,9 +10,8 @@ main.addEventListener('click', async (event) => {
             try {
                 await deleteTask(taskId);
                 taskContainer.remove();
-                alert('This task has been deleted');
+
             } catch (error) {
-                alert('This task has not been deleted');
                 console.log('Error:', error);
             }
         }
@@ -28,9 +27,8 @@ async function deleteTask(taskId) {
         const response = await fetch(`http://localhost:3000/api/v1/delete/${taskId}`, {
             method: 'DELETE',
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/json'
             },
-
         });
 
         if (!response.ok) {

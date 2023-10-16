@@ -4,10 +4,7 @@ const loginForm = document.querySelector('.login')
 
 const loginFn = async (email, password) => {
     try {
-        const loginDetails = {
-            email,
-            password
-        };
+        const loginDetails = {email,password};
         const res = await fetch('http://localhost:3000/api/v1/Login', {
             method: 'POST',
             headers: {
@@ -18,11 +15,9 @@ const loginFn = async (email, password) => {
 
         if (res.ok) {
             const data = await res.json();
-            alert('Login is successful');
             window.setTimeout(()=>{
                 location.assign('/overview')
-            },1500)
-            console.log(data);
+            },500)
         } else {
             alert('Login failed');
         }

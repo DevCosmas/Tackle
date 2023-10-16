@@ -40,8 +40,7 @@ app.use(helmet({
   }));
 app.use(morgan('combined'))
 app.use(cookieParser())
-// app.use(express.json())
-// app.use(express.urlencoded({ extended: true }))
+
 
 
 

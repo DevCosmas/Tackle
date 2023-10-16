@@ -1,9 +1,13 @@
 const main = document.querySelector('.main-overview')
+const taskList = document.querySelector('.list--wrapper')
 function createTemplate(task) {
     const taskContainerHTML = `
    
-  <div class="task--container" id="${task._id}">
-    <span class="task--name ">${task.name}</span>
+  <div class="task--wrapper"  id="${task._id}">
+  <div class="task_name--contain">
+  <span class="task--name ">${task.name}</span>
+  </div>
+    <div class="icon--contain">
     <input class="checkbox" type="checkbox">
     <span class="delete--icon">
       <svg class="delete--icon_icon not" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -11,10 +15,13 @@ function createTemplate(task) {
         </path>
       </svg>
     </span>
+    </div>
   </div>
 `;
     const taskContainer = document.createElement('div');
+
     taskContainer.innerHTML = taskContainerHTML;
+
     main.appendChild(taskContainer)
 }
 
@@ -35,9 +42,8 @@ document.addEventListener('DOMContentLoaded', function () {
             if (res.ok) {
                 const data = await res.json();
                 createTemplate(data.newTask);
-                
+
             } else {
-                alert('Creation of task failed');
                 console.log(res.data.error)
             }
         } catch (error) {
@@ -48,8 +54,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     taskForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const taskInput = document.querySelector('.task-input').value;
-        await taskFn(taskInput);
+        const taskInput = document.querySelector('.task-input');
+        await taskFn(taskInput.value); 
+        taskInput.value = "";
     });
 })
 

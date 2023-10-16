@@ -20,17 +20,14 @@ const signUpFn = async (fullname, email, password, confirmPassword) => {
 
         if (res.ok) {
             const data = await res.json();
-            alert('signUp is successful');
             window.setTimeout(()=>{
                 location.assign('/overview')
-            },3000)
-            console.log(data);
+            },500)
         } else {
-            alert('signUp failed');
+            console.log(new Error)
         }
     } catch (err) {
-        console.error(err.message);
-        alert(err.message)
+        console.error(err);
     }
 };
 

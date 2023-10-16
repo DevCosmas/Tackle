@@ -28,15 +28,16 @@ html {
 
 }
 
-.intro-heading{
-text-align: center;
-font-size: 5rem;
-font-weight: 900;
-color: #fff;
-text-transform: capitalize;
-padding-bottom: 2rem;
+.intro-heading {
+  text-align: center;
+  font-size: 5rem;
+  font-weight: 900;
+  color: #fff;
+  text-transform: capitalize;
+  padding-bottom: 2rem;
 }
-.intro--p{
+
+.intro--p {
   width: 70%;
   min-height: 10rem;
   margin: 0 auto;
@@ -45,7 +46,8 @@ padding-bottom: 2rem;
   color: whitesmoke;
   padding-bottom: 3rem;
 }
-.intro--link{
+
+.intro--link {
   text-align: center;
   align-items: center;
   width: 150px;
@@ -65,19 +67,21 @@ padding-bottom: 2rem;
 
 }
 
-.intro--footer{
+.intro--footer {
   background-color: rgba(13, 14, 13, .9);
   height: 30%;
   box-sizing: border-box;
   padding-top: 2%;
 }
-.intro--footer-p{
+
+.intro--footer-p {
   text-align: right;
   color: #fff;
   padding-right: 8rem;
   font-size: 1.3rem;
 }
-.footer--link{
+
+.footer--link {
   color: #fff;
   text-decoration: none;
 }
@@ -106,18 +110,46 @@ li {
   margin-right: 5rem;
 }
 
-.sort {
-  outline: none;
-  border: none;
-  background-color: rgb(127, 173, 127);
+.sorting {
+  width: 20%;
+  display: flex;
+  margin-left: 60%;
+  margin-top: 2%;
+  text-align: right;
+}
+
+.profile--container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 30rem;
   color: #fff;
-  font-size: 2rem;
-  cursor: pointer;
   text-transform: capitalize;
 }
 
-.sort-opt {
+.sort {
+  outline: none;
+  border: none;
+  font-size: 2rem;
   cursor: pointer;
+  text-transform: capitalize;
+  border: 2px solid #000;
+  padding: .5rem .5rem;
+  border-radius: 5px 5px;
+}
+
+.filter {
+  background-color: #000;
+  color: #fff;
+  width: 100px;
+  border: none;
+  outline: none;
+  border-radius: 5px 5px;
+  margin-left: .5rem;
+  font-size: 2rem;
+  letter-spacing: 2px;
+  cursor: pointer;
+
 }
 
 .nav--link {
@@ -132,48 +164,69 @@ li {
   height: 50px;
   border-radius: 50%;
   transform: translate(30%, 10%);
+  margin-left: -5rem;
 }
 
 main {
-  width: 50%;
+  width: 60%;
   height: 80vh;
   margin: 0 auto;
 }
 
 .task--entry {
   text-align: left;
-  padding: 3rem 3rem;
+  padding: 3rem .1rem;
+  margin-top: -1rem;
 }
 
 .task--h1 {
-  padding-top: 5rem;
-  padding-bottom: 1.5rem;
+  padding-top: 3rem;
+  padding-bottom: .5rem;
   text-align: left;
   text-transform: capitalize;
+  text-decoration: underline;
 }
 
-.task--container {
-  width: 50%;
+
+.task--wrapper {
+  display: flex;
+  width: 35%;
+  justify-content: space-between;
   height: 3.5rem;
-  border: 0.3px solid whitesmoke;
-  padding: 2rem 2rem;
+  border: 0.3px solid rgba(75, 71, 71, .2);
+  margin-bottom: 3rem;
+  padding: 2rem 1rem;
   border-radius: 5px;
   background-color: #fff;
-  display: flex;
-  justify-content: space-around;
   align-items: center;
   box-sizing: border-box;
+  margin-bottom: 1.5rem;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .13), 0 1px 1px 0 rgba(0, 0, 0, .11);
+}
 
+.icon--contain {
+  display: flex;
+  width: 2%;
+  justify-content: space-around;
+  margin-left: 5rem;
+  padding-right: 1.5rem;
 }
 
 .task--name {
+  display: inline-block;
+  width: 95%;
   font-size: 1.5rem;
   text-align: left;
-  margin-left: -45px;
   font-weight: 700;
   color: rgb(80, 75, 75);
   text-transform: capitalize;
+
+}
+
+.task_name--contain {
+  width: 90%;
+  font-size: 1.5rem;
+
 }
 
 .delete--icon,
@@ -182,22 +235,24 @@ main {
   width: 20px;
   cursor: pointer;
   stroke: red;
-  margin-right: -30px;
+  padding-right: 2rem;
+
 }
 
 
 .checkbox {
   display: block;
-  margin-right: -80px;
+  padding-right: 1rem;
   cursor: pointer;
   accent-color: green;
   width: 20px;
   height: 20px;
+  margin-right: 2rem;
 
 }
 
 .task-input {
-  padding: 5px 5px;
+  padding: 8px 8px;
   outline: none;
   border: 2px solid rgb(65, 63, 63);
   border-radius: 5px 5px;
@@ -209,7 +264,7 @@ main {
   border: none;
   border-radius: 5px 5px;
   box-sizing: border-box;
-  padding: 5px 5px;
+  padding: 8px 8px;
   background-color: green;
   color: #fff;
   text-align: center;
@@ -219,12 +274,13 @@ main {
   cursor: pointer;
 }
 
+
 /* CSS FOR THE LOGIN WEBPAGE */
-.login{
+.login {
   margin: 0 auto;
   width: 20%;
   min-height: 20rem;
-  transform: translate(0,50%);
+  transform: translate(0, 50%);
   background-color: #fff;
   border-radius: 5px 5px;
   padding: 3rem 3rem;
@@ -232,18 +288,19 @@ main {
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .13), 0 1px 1px 0 rgba(0, 0, 0, .11);
 
 }
-.login-cta{
+
+.login-cta {
   display: block;
   margin: 1rem 1rem;
   padding: .8rem .8rem;
   outline: none;
   border-radius: 5px 5px;
-  border:none;
+  border: none;
   border-bottom: 2px solid rgb(90, 87, 87);
-  text-transform:lowercase;
+  text-transform: lowercase;
 }
 
-.login-submit{
+.login-submit {
   width: 90%;
   font-size: 1.5rem;
   font-weight: 900;
@@ -254,30 +311,158 @@ main {
   border: none;
 }
 
-.login-p{
+.login-p {
   font-size: 1.3rem;
   text-transform: capitalize;
-  
+
 }
-.login-link{
-text-decoration: none;
+
+.login-link {
+  text-decoration: none;
 }
-.login-intro{
+
+.login-intro {
   height: 100vh;
 }
+
 /* CSS FOR THE SIGN UP WEBPAAGE */
 /* CSS FOR THE SEARCH QUERY PAGE */
-.search-container{
+.search-container {
   width: 50%;
   height: 100%;
   padding-top: 5%;
   margin: 0 auto;
 }
-.search-child{
+
+
+
+.status {
+  display: inline-block;
+  margin-right: 5rem;
+  font-size: 1.5rem;
+  box-sizing: border-box;
+  border-radius: 3px 3px;
+  text-transform: capitalize;
+  letter-spacing: .1rem;
+  align-self: center;
+  border: 0.3px solid rgba(75, 71, 71, .2);
+ 
+}
+
+.pending {
+  background-color: yellow;
+  color: #000;
+  padding: .5rem .5rem;
+
+}
+
+.completed {
+  background-color: green;
+  color: #fff;
+  padding: .5rem .5rem;
+}
+
+.deleted {
+  background-color: red;
+  color: #fff;
+  padding: .5rem .5rem;
+}
+
+.content {
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-transform: capitalize;
+  text-align: center;
+  display: inline-block;
+}
+
+
+
+/* CSS FOR THE STATS WEBPAGE */
+.stats-child {
+  width: 35%;
+  margin-left: -10rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: .2rem;
+  border-bottom: 0.5px solid #000;
+  padding-bottom: 2rem;
+}
+
+.stats {
+  padding-right: 3rem;
+  text-align: center;
+ 
+}
+
+
+.displayName {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  margin-left: -3rem;
+  color: #fff;
+  text-transform: capitalize;
+}
+
+.nav--logout {
+  margin-left: 5rem;
+}
+
+.fade-out {
+  animation-name: fadeOut;
+  animation-duration: 5s;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+}
+
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+
+.date {
+  display: flex; 
+  justify-content: flex-end; 
+  align-items: center;
+  width: 150px;
+  
+ 
+ 
+}
+
+.stats--h1{
+  letter-spacing: .3rem;
+  text-align: left;
+  text-transform: uppercase;
+  margin-left: -10rem;
+}
+
+.search-container{
+  margin-bottom: .2px;
+  margin-top: .5rem;
+  margin-left: 7rem;
+  height: 20px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
+.search-child {
+  text-align: left;
+  margin-top: -7rem;
   width: 70%;
-  height: 4rem;
-  margin-bottom: 1.5rem;
-  border: 0.3px solid whitesmoke;
+  height: 8rem;
+  margin-bottom: -10rem;
+  border: 0.3px solid rgba(75, 71, 71, .2);
   padding: 1.5rem 2rem;
   border-radius: 5px;
   background-color: #fff;
@@ -288,55 +473,22 @@ text-decoration: none;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .13), 0 1px 1px 0 rgba(0, 0, 0, .11);
 
 }
-.status{
-  display: inline-block;
-  margin-right: 5rem;
-  font-size: 1.5rem;
-  box-sizing: border-box;
-  border-radius: 3px 3px;
-  text-transform: capitalize;
-  letter-spacing: .1rem;
-}
-.pending{
-  background-color: yellow;
-  color: #000;
-  padding: .5rem .5rem;
-}
-.completed{
-  background-color: green;
-  color: #fff;
-  padding: .5rem .5rem;
-}
-.deleted{
-  background-color:red;
-  color: #fff;
-  padding: .5rem .5rem;
-}
-.content{
-  font-size: 1.5rem;
-  font-weight: 500;
-  text-transform: capitalize;
-}
-.date{
-  margin-left: 1rem;
-}
-/* CSS FOR THE STATS WEBPAGE */
-.stats-child{
+.pagination-box{
+  margin-top: 3rem;
+  margin-bottom: 5rem;
+  margin-left: 10rem;
+  display: flex;
   width: 35%;
+  justify-content: space-between;
+  align-items: center;
+  padding: .5rem 8rem;
 }
-.stats{
-  padding-right: 3rem;
-}
+.pagination-button{
+  text-decoration: none;
+  font-size: 1.8rem;
+  color: #000;
+  background-color:  #fff;
+  padding: .5rem 2rem;
+  border-radius: 5px 5px;
 
-.displayName{
- display: flex;
- align-items: center;
- justify-content: right;
- margin-left: -3rem;
- color:#fff;
- text-transform: capitalize;
 }
-.nav--logout{
-  margin-left: 5rem;}
-
- 

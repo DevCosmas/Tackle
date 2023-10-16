@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
-const authController= require('./../controller/authController')
-const viewController=require('./../controller/view_controller')
+const authController = require('./../controller/authController')
+const viewController = require('./../controller/view_controller')
 
 
 
@@ -22,5 +22,5 @@ router.get('/overview', (req, res) => {
     res.status(200).render('overview')
 })
 router.get('/stats', viewController.getUserTaskStat)
-router.get('/searchQuery', viewController.userTask)
+router.get('/searchQuery', viewController.queryTask)
 module.exports = router
