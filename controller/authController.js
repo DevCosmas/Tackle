@@ -20,14 +20,16 @@ const isAuthenticated = async (req, res, next) => {
             req.user = user
 
         return next()
-    } catch (error) {
+    } catch (err) {
         next(new appError(err, 500))
     }
 }
 const isLoggedIn = async (req, res, next) => {
     try {
-
-        if (req.cookies.jwt) {
+        if (!req.cookies.jwt) {
+            return next(new appError('kindly login or sign up', 401))
+        }
+        else if (req.cookies.jwt) {
             const decodedToken = await jwt.verify(req.cookies.jwt, process.env.JWT_SECRET_KEY);
             const date = new Date
             const time = parseInt(date.getTime() / 1000)
@@ -37,6 +39,7 @@ const isLoggedIn = async (req, res, next) => {
                 res.locals.user = user
             return next()
         }
+
         next()
 
     } catch (error) {
@@ -44,5 +47,6 @@ const isLoggedIn = async (req, res, next) => {
     }
 
 }
+
 
 module.exports = { isAuthenticated, isLoggedIn }

@@ -180,6 +180,14 @@ INTERMIDIATE
 }
 
 @media(max-width:42.5em) {
+    body {
+        overflow-x: hidden;
+        position: relative;
+    }
+
+    .navi {
+        overflow-x: hidden;
+    }
 
     .login,
     .signUp {
@@ -193,6 +201,22 @@ INTERMIDIATE
 
     .nav--logout {
         display: none;
+    }
+
+    .dots--container {
+        display: inline-block;
+        margin-left: 78%;
+        margin-top: -28%;
+        z-index: 2;
+    }
+
+    .fixed--dot-child {
+        margin-top: .3rem;
+        margin-left: -5rem;
+        z-index: 1;
+        box-sizing: border-box;
+        min-height: 2rem;
+       
     }
 
     .profile--container {
@@ -222,6 +246,24 @@ INTERMIDIATE
 /* ****************************/
 /* FOR PHONE SCREEN */
 /***************************** */
+@media (max-width:38.6em) {
+
+    .dots--container {
+        display: inline-block;
+        margin-left: 78%;
+        margin-top: -30%;
+        z-index: 2;
+    }
+
+    .fixed--dot-child {
+        margin-top: .3rem;
+        margin-left: -5rem;
+        z-index: 1;
+        box-sizing: border-box;
+        min-height: 2rem;
+       
+    }    
+}
 @media(max-width:38.13em) {
 
     .nav--bar,
@@ -253,36 +295,38 @@ INTERMIDIATE
         width: 80vw;
         margin-top: -15rem;
     }
+
     .sorting {
         width: 30%;
         margin: 4rem 0 8rem 8rem;
 
 
-    } 
+    }
 
     .filter {
         width: 40rem;
         padding: 0 2rem;
         margin-right: 3rem;
 
-    } 
+    }
 
 }
 
 @media(max-width:37.6em) {
-      .sorting {
-            width: 30%;
-            margin: 4rem 0 8rem 8rem;
+    .sorting {
+        width: 30%;
+        margin: 4rem 0 8rem 8rem;
 
 
-        } 
+    }
 
-        .filter {
-            width: 40rem;
-            padding: 0 2rem;
-            margin-right: 3rem;
+    .filter {
+        width: 40rem;
+        padding: 0 2rem;
+        margin-right: 3rem;
 
-        } 
+    }
+
     .task--list {
         width: 100vw;
         padding-left: 2rem;
@@ -291,9 +335,8 @@ INTERMIDIATE
     .search-container {
         width: 90%;
         margin: 10rem 0 -5rem 2rem;
-        /* border: solid red; */
         padding-top: 3rem;
-        /* box-sizing: border-box; */
+        
 
 
     }
@@ -307,7 +350,7 @@ INTERMIDIATE
         margin-left: -5rem;
     }
 
-   
+
 
     html {
         font-size: 62.5%;
@@ -356,12 +399,33 @@ INTERMIDIATE
             height: 85%;
             padding-top: 20%;
         }
-      
+
     }
-@media(max-width:37.3em){
-.stats--flex{
-    margin-top: -20rem;
+
+    @media(max-width:37.3em) {
+        .stats--flex {
+            margin-top: -20rem;
+        }
+    }
+@media (max-width:35.7em) {
+
+    .dots--container {
+       
+        margin-left: 78%;
+        margin-top: -32%;
+        
+    }
+   
 }
+@media (max-width:33.2em) {
+
+    .dots--container {
+       
+        margin-left: 76%;
+        margin-top: -35%;
+        
+    }
+   
 }
     @media (max-width:32em) {
 
@@ -370,6 +434,12 @@ INTERMIDIATE
             font-size: 62.5%;
             font-family: sans-serif;
             overflow-x: hidden;
+        }
+        .dots--container {
+       
+            margin-left: 77%;
+            margin-top: -37%;
+            
         }
 
         .intro-body {
@@ -407,30 +477,38 @@ INTERMIDIATE
             padding-right: 3rem;
         }
 
-     
+
     }
 
 
     @media(max-width:31.3em) {
-       
 
-        .sorting{
+
+        .sorting {
             margin-left: 3rem;
             margin-bottom: 8rem;
         }
 
-        .filter{
+        .filter {
             margin-right: 10rem;
         }
     }
 
-    
+
 
     @media(max-width:30em) {
         body {
             width: 100%;
             overflow-x: hidden;
         }
+
+        .dots--container {
+       
+            margin-left: 70%;
+            margin-top: -38%;
+            
+        }
+
 
         .login,
         .signUp {
@@ -445,7 +523,8 @@ INTERMIDIATE
         .user-name {
             display: none;
         }
-        .overview--input{
+
+        .overview--input {
             width: 100%;
             margin-left: 3rem;
             z-index: 1000;
@@ -458,20 +537,24 @@ INTERMIDIATE
 
         .task--h1 {
             margin-left: -2rem;
-             width: 100%;
-}
-.task-btn{
-    margin-top: 1.8rem ;
-}
-#insert-task-container{
-    margin-left: 3.5rem;
-    width: 100%;
-}
-.task--wrapper{
-    margin-left: 3.5rem;
-    height: 80px;
-    width: 100%;
-}
+            width: 100%;
+        }
+
+        .task-btn {
+            margin-top: 1.8rem;
+        }
+
+        #insert-task-container {
+            margin-left: 3.5rem;
+            width: 100%;
+        }
+
+        .task--wrapper {
+            margin-left: 3.5rem;
+            height: 80px;
+            width: 100%;
+        }
+
         .pagination-box {
             min-width: 90%;
             justify-content: space-around;
@@ -493,19 +576,28 @@ INTERMIDIATE
     }
 
     @media(max-width:28.125em) {
-  .search--querry-cont{
-    .bar {
-        display: none;
-    }
+        .search--querry-cont {
+            .bar {
+                display: none;
+            }
 
-    .color {
-        display: inline-block;
-        width: 2px;
-        margin-left: 3rem;
+            .color {
+                display: inline-block;
+                width: 2px;
+                margin-left: 3rem;
+            }
+        }
     }
-  }
-    }
+    @media (max-width:27em) {
 
+        .dots--container {
+           
+            margin-left: 73%;
+            margin-top: -42%;
+            
+        }
+       
+    }
     @media (max-width:25em) {
 
         /* //FOR INTRO SCREEN// */
@@ -561,12 +653,19 @@ INTERMIDIATE
             padding-top: 20%;
         }
 
-       
+
 
     }
 
 }
+@media (max-width:24.5em) {
 
+    .dots--container {
+       
+        margin-left: 68%;
+        margin-top: -46%;
+        
+    }}
 @media(max-width:23.5em) {
     .stats--flex {
         display: flex;
@@ -576,8 +675,8 @@ INTERMIDIATE
         margin-top: 2rem;
         margin-left: 1rem;
         padding-left: 2rem;
-       
-     
+
+
     }
 
     .stats-child {
@@ -586,7 +685,7 @@ INTERMIDIATE
         flex-direction: column;
         height: 100vh;
         width: 80vw;
-       
+
 
     }
 
@@ -594,7 +693,7 @@ INTERMIDIATE
         display: block;
         margin-bottom: -5rem;
         width: 50%;
-       
+
     }
 }
 
@@ -639,14 +738,14 @@ INTERMIDIATE
 
     }
 
-     .stats--flex {
+    .stats--flex {
 
         width: 70%;
         margin-left: -2rem;
         flex-direction: column;
         border: none;
         margin-top: -10rem;
-       
+
 
     }
 
@@ -658,7 +757,7 @@ INTERMIDIATE
         border: none;
         justify-content: space-around;
         font-size: 2rem;
-    } 
+    }
 
     .bar {
         display: none;
@@ -677,12 +776,14 @@ INTERMIDIATE
     }
 
 }
-@media(max-width:37.3em){
-    .stats--h1{
+
+@media(max-width:37.3em) {
+    .stats--h1 {
         margin-top: 1rem;
         margin-bottom: -1rem;
     }
 }
+
 @media(max-width:22em) {
 
     .login,
@@ -700,7 +801,14 @@ INTERMIDIATE
     }
 }
 
+@media (max-width:21.7em) {
 
+    .dots--container {
+       
+        margin-left: 62%;
+        margin-top: -50%;
+        
+    }}
 @media(max-width:21.3em) {
     .task--entry {
         margin-left: -3rem;
@@ -801,7 +909,14 @@ INTERMIDIATE
         padding-top: 20%;
     }
 }
+@media (max-width:18.8em) {
 
+    .dots--container {
+       
+        margin-left: 58%;
+        margin-top: -63%;
+        
+    }}
 
 @media(max-width:17em) {
     .sorting {
@@ -825,7 +940,32 @@ INTERMIDIATE
 
 }
 
+@media (max-width:16.7em) {
 
+    .dots--container {
+       
+        margin-left: 53%;
+        margin-top: -70%;
+        
+    }}
+
+    @media (max-width:14.44em) {
+
+        .dots--container {
+           
+            margin-left: 50%;
+            margin-top: -80%;
+            
+        }}
+
+        @media (max-width:13.44em) {
+
+            .dots--container {
+               
+                margin-left: 45%;
+                margin-top: -90%;
+                
+            }}
 @media(max-width:13em) {
     .nav--bar {
         justify-content: center;
@@ -900,20 +1040,6 @@ INTERMIDIATE
         margin-left: -1rem;
     }
 
-    /* .stats--flex {
-        margin-left: -2rem;
-    }
-
-    .stats-child {
-        width: 20%;
-        display: flex;
-        /* flex-direction: column;
-        align-items: flex-start;
-        justify-content: center; */
-    /* margin-bottom: 1rem;
-        padding-top: 4rem;
-        padding-bottom: 2rem;
-        border: none; */
 }
 
 .content {
@@ -927,3 +1053,21 @@ INTERMIDIATE
 .stats--h1 {
     padding-left: -3rem;
 }
+
+@media (max-width:12.3em) {
+
+    .dots--container {
+       
+        margin-left: 40%;
+        margin-top: -95%;
+        
+    }}
+
+    @media (max-width:11.31em) {
+
+        .dots--container {
+           
+            margin-left: 30%;
+            margin-top: -19rem;
+            
+        }}

@@ -46,7 +46,7 @@ async function Login(req, res, next) {
 }
 
 
-async function updateProfile(req, res,next) {
+async function updateProfile(req, res, next) {
     try {
         const updatesDetails = req.body
         const updatedUser = userModel.findByIdAndUpdate(req.user, updatesDetails, { new: true, runValidators: true })
@@ -56,7 +56,7 @@ async function updateProfile(req, res,next) {
     }
 
 }
-async function deleteAcct(req, res,next) {
+async function deleteAcct(req, res, next) {
     try {
 
         const deleteUser = await userModel.findByIdAndUpdate(req.user._id)
@@ -66,4 +66,16 @@ async function deleteAcct(req, res,next) {
     }
 
 }
-module.exports = { signUp, updateProfile, deleteAcct, Login }
+
+const logout = (req, res) => {
+
+
+    res.clearCookie('jwt', {
+        httpOnly: true
+    })
+
+    return res.status(200).json({ message: 'You have been successfully logged out' });
+};
+
+
+module.exports = { signUp, updateProfile, deleteAcct, Login, logout }

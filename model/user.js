@@ -7,12 +7,12 @@ const { response } = require('express')
 const userSchema = new Schema({
     fullname: {
         type: String,
-        // required: [true, 'A user must have a name'],
+        required: [true, 'A user must have a name'],
         trim: true
     },
     email: {
         type: String,
-        // required: [true, 'A user must have an emmail'],
+        required: [true, 'A user must have an emmail'],
         trim: true,
         unique: true,
         lowercase: true,
@@ -34,12 +34,12 @@ const userSchema = new Schema({
     },
     password: {
         type: String,
-        // required: true,
+        required: true,
         trim: true
     },
     confirmPassword: {
         type: String,
-        // required: true,
+        required: true,
         trim: true
     }
 })

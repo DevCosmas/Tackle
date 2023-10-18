@@ -5,6 +5,7 @@ const authController = require('./../controller/authController')
 
 taskRouter.use(authController.isAuthenticated)
 
+
 taskRouter.get('/allTask', taskController.getAll)
 taskRouter.patch('/updateTask/:id', taskController.updateTask)
 taskRouter.post('/createTask', taskController.createNewTask)
