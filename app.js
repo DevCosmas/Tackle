@@ -28,18 +28,18 @@ app.set('views', path.join(__dirname, 'views'))
 app.use(express.static(path.join(__dirname, 'public')))
 
 // csp config
-const cspConfig = {
-  directives: {
-    defaultSrc: ["'self'"],
-    scriptSrc: ["'self'"],
-    styleSrc: ["'self'"],
-    connectSrc: ["'self'", 'http://localhost:3000']
-  },
-};
-// middleWare
-app.use(helmet({
-  contentSecurityPolicy: cspConfig,
-}));
+// const cspConfig = {
+//   directives: {
+//     defaultSrc: ["'self'"],
+//     scriptSrc: ["'self'"],
+//     styleSrc: ["'self'"],
+//     connectSrc: ["'self'", 'http://localhost:3000']
+//   },
+// };
+// // middleWare
+// app.use(helmet({
+//   contentSecurityPolicy: cspConfig,
+// }));
 app.use(morgan('combined'))
 app.use(cookieParser())
 
