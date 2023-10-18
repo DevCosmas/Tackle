@@ -19,6 +19,7 @@ function createTemplate(task) {
   </div>
 `;
     const taskContainer = document.createElement('div');
+    taskContainer.setAttribute('id', 'insert-task-container')
 
     taskContainer.innerHTML = taskContainerHTML;
 

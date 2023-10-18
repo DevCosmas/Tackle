@@ -2,16 +2,17 @@
   <div class="task-list">
 
     <% filteredTasks.forEach(task => { %>
-      <div class="search-container">
+      <div class="search-container search--querry-cont">
         <div class="search-child">
-          <span class="status <%= task.status %>">
+          <span class="status bar <%= task.status %>">
             <%= task.status %>
           </span>
           <span class="search-details content">
+            <span class="color <%= task.status %>"></span>
             <%= task.name %>
           </span>
-          <span class="content date">
-            <%= task.createdAt.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %>
+          <span class="content date search-date">
+            <%= task.createdAt.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) %>
           </span>
         </div>
       </div>

@@ -35,9 +35,9 @@ const isLoggedIn = async (req, res, next) => {
 
             if (user && decodedToken.iat < time)
                 res.locals.user = user
-
+            
         }
-        return next()
+         next()
 
     } catch (error) {
         res.status(500).json({ result: 'error', message: error.message })

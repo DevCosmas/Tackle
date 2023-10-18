@@ -19,22 +19,24 @@ html {
   overflow-y: hidden;
 
 }
-.intro--child-container{
+
+.intro--child-container {
   background-color: rgba(0, 0, 0, 0.8);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height:100vh;
- 
-  
+  min-height: 100vh;
+
+
 }
+
 .intro {
   width: 100%;
   min-height: 20rem;
   /* background-color: rgba(20, 20, 20, 0.5); */
   padding-top: 5%;
   padding-bottom: 5%;
- 
+
 }
 
 .intro-heading {
@@ -93,7 +95,8 @@ html {
   color: #fff;
   text-decoration: none;
 }
-.footer--hidden{
+
+.footer--hidden {
   display: none;
 }
 
@@ -356,7 +359,7 @@ main {
   letter-spacing: .1rem;
   align-self: center;
   border: 0.3px solid rgba(75, 71, 71, .2);
- 
+
 }
 
 .pending {
@@ -403,7 +406,7 @@ main {
 .stats {
   padding-right: 3rem;
   text-align: center;
- 
+
 }
 
 
@@ -440,23 +443,23 @@ main {
 
 
 .date {
-  display: flex; 
-  justify-content: flex-end; 
+  display: flex;
+  justify-content: flex-end;
   align-items: center;
   width: 150px;
-  
- 
- 
+
+
+
 }
 
-.stats--h1{
+.stats--h1 {
   letter-spacing: .3rem;
   text-align: left;
   text-transform: uppercase;
   margin-left: -10rem;
 }
 
-.search-container{
+.search-container {
   margin-bottom: .2px;
   margin-top: .5rem;
   margin-left: 7rem;
@@ -483,7 +486,8 @@ main {
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .13), 0 1px 1px 0 rgba(0, 0, 0, .11);
 
 }
-.pagination-box{
+
+.pagination-box {
   margin-top: 3rem;
   margin-bottom: 5rem;
   margin-left: 10rem;
@@ -493,31 +497,38 @@ main {
   align-items: center;
   padding: .5rem 8rem;
 }
-.pagination-button{
+
+.pagination-button {
   text-decoration: none;
   font-size: 1.8rem;
   color: #000;
-  background-color:  #fff;
+  background-color: #fff;
   padding: .5rem 2rem;
   border-radius: 5px 5px;
 
 }
 
-.dots--container{
+.dots--container {
   display: none;
 }
-.dots{
-  width:20px;
+
+.dots {
+  width: 20px;
   height: 30px;
 }
 
-.stats--flex{
+.stats--flex {
   display: flex;
   flex-direction: column;
   margin-top: 10rem;
   padding-left: 10rem;
 
 }
-.stats--h1{
-margin-left: 6rem;
+
+.stats--h1 {
+  margin-left: 6rem;
+}
+
+.color {
+  display: none;
 }
