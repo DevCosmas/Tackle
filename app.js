@@ -6,7 +6,9 @@ const morgan = require('morgan')
 const { mongoDbConnection } = require('./config')
 const { taskRouter } = require('./routes/taskRoute')
 const { userRouter } = require('./routes/userRoutes')
-const viewRoute=require('./routes/viewRoute')
+const viewRoute = require('./routes/viewRoute')
+const appError = require('./utils/errohandler')
+const errohandler = require('./controller/errorController')
 
 require('dotenv').config()
 const PORT = process.env.PORT
@@ -27,17 +29,17 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 // csp config
 const cspConfig = {
-    directives: {
-      defaultSrc: ["'self'"],
-      scriptSrc: ["'self'"],
-      styleSrc: ["'self'"],
-      connectSrc: ["'self'", 'http://localhost:3000']
-    },
-  };
+  directives: {
+    defaultSrc: ["'self'"],
+    scriptSrc: ["'self'"],
+    styleSrc: ["'self'"],
+    connectSrc: ["'self'", 'http://localhost:3000']
+  },
+};
 // middleWare
 app.use(helmet({
-    contentSecurityPolicy: cspConfig,
-  }));
+  contentSecurityPolicy: cspConfig,
+}));
 app.use(morgan('combined'))
 app.use(cookieParser())
 
@@ -49,11 +51,13 @@ app.use('/api/v1', userRouter)
 app.use('/api/v1', taskRouter)
 app.use('/', viewRoute)
 
-app.all('*', (req, res) => {
-    res.status(404).send('Page not found');
-  });
+app.all('*', (req, res, next) => {
+  next(new appError('page not found', 404))
+});
 
+
+app.use(errohandler)
 app.listen(PORT, () => {
-    console.log('Server is up and paying attention')
+  console.log('Server is up and paying attention')
 })
 

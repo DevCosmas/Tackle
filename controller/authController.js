@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken')
 const { userModel } = require('./../model/user')
+const appError = require('./../utils/errohandler')
 
 const isAuthenticated = async (req, res, next) => {
 
@@ -20,8 +21,7 @@ const isAuthenticated = async (req, res, next) => {
 
         return next()
     } catch (error) {
-        res.status(500).json({ result: 'error', error })
-
+        next(new appError(err, 500))
     }
 }
 const isLoggedIn = async (req, res, next) => {
@@ -35,13 +35,12 @@ const isLoggedIn = async (req, res, next) => {
 
             if (user && decodedToken.iat < time)
                 res.locals.user = user
-            
+            return next()
         }
-         next()
+        next()
 
     } catch (error) {
-        res.status(500).json({ result: 'error', message: error.message })
-
+        next(new appError(err, 500))
     }
 
 }

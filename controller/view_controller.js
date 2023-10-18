@@ -1,7 +1,10 @@
 const { taskModel } = require("../model/task")
 const mongoose = require('mongoose')
+const appError = require('./../utils/errohandler')
 const ObjectId = mongoose.Types.ObjectId;
-async function userTask(req, res) {
+
+
+async function userTask(req, res,next) {
     try {
         const page = parseInt(req.query.page) || 1
         const pageSize = 5;
@@ -9,15 +12,15 @@ async function userTask(req, res) {
 
         const userId = res.locals.user.id
         const userTasks = await taskModel.find({ user: userId }).skip(skip).limit(pageSize);
-        if (!userTasks) return res.status(404).json({ result: "FAIL" })
+        if (!userTasks) return next(new appError('No task was found', 404))
         res.status(200).render('searchQuery', { userTasks, page, pageSize });
     }
     catch (err) {
-        res.status(500).json({ message: "internal server error", error: err.message })
+        next(new appError(err, 500))
     }
 
 }
-async function getUserTaskStat(req, res) {
+async function getUserTaskStat(req, res, next ) {
     try {
         const userId = res.locals.user.id
         const pipeline = [
@@ -43,11 +46,11 @@ async function getUserTaskStat(req, res) {
 
 
     } catch (err) {
-        res.status(500).json({ message: "internal server error", error: err.message })
+        next(new appError(err, 500))
     }
 }
 
-    async function queryTask(req, res) {
+    async function queryTask(req, res,next) {
         const filter = req.query.filter;
         const page = parseInt(req.query.page) || 1;
         const pageSize = 5;
@@ -66,8 +69,8 @@ async function getUserTaskStat(req, res) {
             } else if (filter === 'deleted') {
                 filteredTasks = await taskModel.find({ user: userId, status: 'deleted' }).skip(skip).limit(pageSize);
             }
-        } catch (error) {
-            console.error("Error:", error);
+        } catch (err) {
+            next(new appError(err, 500))
         }
     
         res.render('searchQuery', { filteredTasks, page, pageSize , filter});

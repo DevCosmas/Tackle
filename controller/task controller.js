@@ -1,67 +1,70 @@
 const { taskModel } = require("../model/task")
-const mongoose=require('mongoose')
+const appError = require('./../utils/errohandler')
+const mongoose = require('mongoose')
 const ObjectId = mongoose.Types.ObjectId;
 
-async function getAll(req, res) {
+
+async function getAll(req, res, next) {
     try {
         if (req.user.active === true) {
             const userId = req.user.id
             const userTasks = await taskModel.find({ user: userId });
-            if (!userTasks) return res.status(404).json({ result: "FAIL" })
+            if (!userTasks) return next(new appError('cannot find task', 404))
             res.status(200).json({ result: "SUCCES", size: userTasks.length, userTasks })
         }
     } catch (err) {
-        res.status(500).json({ message: "internal server error", error: err.message })
+        next(new appError(err, 500))
     }
 
 }
 
-async function createNewTask(req, res) {
+async function createNewTask(req, res, next) {
     try {
         const body = req.body;
         body.user = req.user._id;
         if (req.user.active === true) {
             const newTask = await taskModel.create(body);
-           
+
             res.status(201).json({ result: "SUCCESS", message: 'A new task has been added', newTask });
-        } else {
-            res.status(404).json({ result: 'FAIL', message: 'User does not exist kindly sign up' });
+        }
+        else {
+            return next(new appError('cannot create new task', 400))
         }
     } catch (err) {
-        res.status(500).json({ message: "internal server error", error: err.message, stack: err.stack });
+        next(new appError(err, 500))
     }
 }
 
-async function updateTask(req, res) {
+async function updateTask(req, res, next) {
     try {
         if (req.user.active === true) {
-            const task= await taskModel.findById(req.params.id)
-            task.status='completed',
-            await task.save();
+            const task = await taskModel.findById(req.params.id)
+            task.status = 'completed',
+                await task.save();
             res.status(201).json({ result: "SUCCESS", message: 'task has been updated', task })
         }
         else {
-            res.status(404).json({ result: 'FAIL', message: 'User does not exist kindly signUp' })
+            return next(new appError('User does not exist kindly signUp', 404))
         }
 
     } catch (err) {
-        res.status(500).json({ message: "internal server error", error: err.message })
+        next(new appError(err, 500))
     }
 
 }
-async function deleteTask(req, res) {
+async function deleteTask(req, res, next) {
     try {
         if (req.user.active === true) {
-            const task= await taskModel.findById(req.params.id)
-            task.status='deleted'
+            const task = await taskModel.findById(req.params.id)
+            task.status = 'deleted'
             await task.save();
-            res.status(200).json({ result: "SUCCESS", message: 'A task has been deleted' , task})
-        }else {
-            res.status(404).json({ result: 'FAIL', message: 'User does not exist kindly signUp' })
+            res.status(200).json({ result: "SUCCESS", message: 'A task has been deleted', task })
+        } else {
+            return next(new appError('User does not exist kindly signUp', 404))
         }
 
     } catch (err) {
-        res.status(500).json({ message: "internal server error", error: err.message })
+        next(new appError(err, 500))
     }
 
 }
@@ -92,7 +95,7 @@ async function getTaskStats(req, res) {
 
         }
     } catch (err) {
-        res.status(500).json({ message: "internal server error", error: err.message })
+        next(new appError(err, 500))
     }
 }
 
