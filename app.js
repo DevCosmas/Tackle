@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const cookieParser = require("cookie-parser")
 const path = require('path')
@@ -10,7 +11,7 @@ const viewRoute = require('./routes/viewRoute')
 const appError = require('./utils/errohandler')
 const errohandler = require('./controller/errorController')
 
-require('dotenv').config()
+
 const PORT = process.env.PORT
 
 // connection
