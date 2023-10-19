@@ -24,7 +24,7 @@ main.addEventListener('click', async (event) => {
 
 async function deleteTask(taskId) {
     try {
-        const response = await fetch(`http://localhost:3000/api/v1/delete/${taskId}`, {
+        const response = await fetch(`/api/v1/delete/${taskId}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'

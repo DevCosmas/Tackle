@@ -27,7 +27,7 @@ main.addEventListener('change', async (event) => {
 
 async function updateTaskStatus(taskId) {
     try {
-        const response = await fetch(`http://localhost:3000/api/v1/updateTask/${taskId}`, {
+        const response = await fetch(`/api/v1/updateTask/${taskId}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',

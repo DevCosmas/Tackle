@@ -11,7 +11,7 @@ const logOutDoc = document.querySelector('.logout')
 const logOut = async () => {
     try {
 
-        const res = await fetch('http://localhost:3000/api/v1/logout', {
+        const res = await fetch('/api/v1/logout', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

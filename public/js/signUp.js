@@ -10,7 +10,7 @@ const signUpFn = async (fullname, email, password, confirmPassword) => {
             password,
             confirmPassword
         };
-        const res = await fetch('http://localhost:3000/api/v1/sign_Up', {
+        const res = await fetch('/api/v1/sign_Up', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

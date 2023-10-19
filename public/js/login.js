@@ -5,7 +5,7 @@ const loginForm = document.querySelector('.login')
 const loginFn = async (email, password) => {
     try {
         const loginDetails = {email,password};
-        const res = await fetch('http://localhost:3000/api/v1/Login', {
+        const res = await fetch('/api/v1/Login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
