@@ -23,7 +23,7 @@ async function Login(req, res, next) {
     try {
         const loginDetails = req.body
         // confirm if user exist
-        const isValidUser = await userModel.findOne({ email: loginDetails.email }).select('-password')
+        const isValidUser = await userModel.findOne({ email: loginDetails.email })
         if (!isValidUser) {
             return next(new appError('this user is not found. kindly sign up', 404))
         }
