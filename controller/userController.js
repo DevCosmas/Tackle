@@ -23,7 +23,7 @@ async function Login(req, res, next) {
     try {
         const loginDetails = req.body
         // confirm if user exist
-        const isValidUser = await userModel.findOne({ email: loginDetails.email })
+        const isValidUser = await userModel.findOne({ email: loginDetails.email }).select('-password')
         if (!isValidUser) {
             return next(new appError('this user is not found. kindly sign up', 404))
         }
@@ -59,7 +59,7 @@ async function updateProfile(req, res, next) {
 async function deleteAcct(req, res, next) {
     try {
 
-        const deleteUser = await userModel.findByIdAndUpdate(req.user._id)
+        const deleteUser = await userModel.findByIdAndUpdate(req.user)
         if (deleteUser) res.status(203).json({ result: "Success", message: 'Account deletion successful' })
     } catch (err) {
         next(new appError(err, 500))
